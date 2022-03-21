@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: '9' }).setToken('OTU0OTA1NDUzNTk3NDM3OTgz.YjZ7AQ.PkmJE5cNjz1RKNJzodMwohdEIbs');
+const rest = new REST({ version: '9' }).setToken('BOT LOGIN TOKEN HERE');
 
 (async () => {
 	try {
