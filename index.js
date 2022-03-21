@@ -36,4 +36,4 @@ const rest = new REST({ version: '9' }).setToken('OTU0OTA1NDUzNTk3NDM3OTgz.YjZ7A
 	}
 })();
 
-client.login('OTU0OTA1NDUzNTk3NDM3OTgz.YjZ7AQ.PkmJE5cNjz1RKNJzodMwohdEIbs')
+client.login('BOT TOKEN HERE')
