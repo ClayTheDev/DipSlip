@@ -1,39 +1,33 @@
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, DiscordAPIError } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const { Routes } = require('discord-api-types/v9');
 const { REST } = require('@discordjs/rest');
-const fs = require('node:fs');
-const { waitForDebugger } = require('node:inspector');
+const fs = require('fs');
+const Discord = require('discord.js');
 
-const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+client.commands = new Discord.Collection();
 
-// Place your client and guild ids here
-const clientId = '954905453597437983';
-const guildId = '927766185255247933';
-
-for (const file of commandFiles) {
+const commandsFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+for(const file of commandsFiles){
 	const command = require(`./commands/${file}`);
-	commands.push(command.data.toJSON());
+	client.commands.set(command.name, command);
 }
+const prefix = '!'
+client.on('message', message => {
 
-const rest = new REST({ version: '9' }).setToken('BOT LOGIN TOKEN HERE');
+	if(!message.content.startsWith(prefix) || message.author.bot) return;
 
-(async () => {
-	try {
-    console.log('Refreshing The Client....')
-    console.log('Refreshed Client. Code has been updated therefore bot has also.')
-		console.log('Started refreshing application (/) commands.');
+	const args = message.content.slice(prefix.legnth).split(/ +/);
+	const command = args.shift().toLowerCase();
 
-		await rest.put(
-			Routes.applicationGuildCommands(clientId, guildId),
-			{ body: commands },
-		);
-
-		console.log('Successfully reloaded application (/) commands.');
-	} catch (error) {
-		console.error(error);
+	if(command === 'suggestions'){
+		client.commands.get('suggestions').execute(message, args, command, client, discord);
 	}
-})();
+	
+})
 
-client.login('BOT TOKEN HERE')
+console.log('Refreshing The Client....')
+console.log('Refreshed Client. Code has been updated therefore bot has also.')
+
+
+client.login('OTU0OTA1NDUzNTk3NDM3OTgz.YjZ7AQ.QG4VxmegCxyca5EOe9hqO1Nm4xk');
