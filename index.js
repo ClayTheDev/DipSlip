@@ -30,4 +30,4 @@ console.log('Refreshing The Client....')
 console.log('Refreshed Client. Code has been updated therefore bot has also.')
 
 
-client.login('OTU0OTA1NDUzNTk3NDM3OTgz.YjZ7AQ.QG4VxmegCxyca5EOe9hqO1Nm4xk');
+client.login('BOT TOKEN HERE');
